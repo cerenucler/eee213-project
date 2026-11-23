@@ -189,3 +189,22 @@ print("------------------------------")
 print(f"Baseline: {baseline_mae:.2f} MW")
 print(f"Linear Regression (AT): {at_mae:.2f} MW")
 print(f"Linear Regression (V): {v_mae:.2f} MW")
+
+# Manual Prediction Verification
+
+print("\nManual Prediction Verification")
+print("------------------------------")
+
+row_number = 7656
+
+feature_value = test_data["V"][0]
+true_pe = test_data["PE"][0]
+
+predicted_pe = slope * feature_value + intercept
+absolute_error = abs(true_pe - predicted_pe)
+
+print("Row number:", row_number)
+print(f"Feature value: {feature_value:.2f} cm Hg")
+print(f"Predicted PE: {predicted_pe:.2f} MW")
+print(f"True PE: {true_pe:.2f} MW")
+print(f"Absolute error: {absolute_error:.2f} MW")
