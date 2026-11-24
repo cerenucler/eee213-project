@@ -1,29 +1,344 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Numerical Problem | EEE213</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1050px;
+            margin: 35px auto;
+            padding: 20px;
+            line-height: 1.6;
+            color: #222;
+        }
+
+        h1, h2, h3 {
+            color: #263746;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background: #263746;
+            color: white;
+        }
+
+        .equation {
+            background: #f2f5f8;
+            padding: 12px;
+            margin: 12px 0;
+            border-radius: 5px;
+        }
+    </style>
 </head>
+
 <body>
 
-    <h1>Numerical Problem</h1>
+    <h1>Numerical Problem: RC Charging Circuit</h1>
 
-    <h2>RC Charging Circuit</h2>
+    <h2>1. Problem Description and Assumptions</h2>
 
     <p>
-        This section will present the RC charging problem
-        and its numerical solution.
+        This problem examines the charging behavior of a capacitor
+        in a series RC circuit connected to a DC voltage source.
+        The capacitor voltage is calculated using Euler's method,
+        fourth-order Runge-Kutta (RK4), and the exact analytical solution.
+    </p>
+
+    <h3>Circuit Parameters</h3>
+
+    <table>
+        <tr>
+            <th>Parameter</th>
+            <th>Value</th>
+        </tr>
+        <tr><td>Source voltage (Vs)</td><td>10 V</td></tr>
+        <tr><td>Resistance (R)</td><td>1000 Ω (1 kΩ)</td></tr>
+        <tr><td>Capacitance (C)</td><td>0.001 F (1000 µF)</td></tr>
+        <tr><td>Initial capacitor voltage</td><td>0 V</td></tr>
+        <tr><td>Time step (h)</td><td>0.2 s</td></tr>
+        <tr><td>Simulation duration</td><td>5 s</td></tr>
+    </table>
+
+    <h3>Model Assumptions</h3>
+
+    <ul>
+        <li>The voltage source is an ideal constant DC source.</li>
+        <li>The resistor and capacitor are ideal components.</li>
+        <li>Resistance and capacitance remain constant.</li>
+        <li>The capacitor is initially uncharged.</li>
+        <li>Leakage current and parasitic effects are neglected.</li>
+        <li>The switch closes at t = 0.</li>
+    </ul>
+
+    <p>
+        Note: The circuit parameters are selected for this
+        worked example because the assignment does not
+        specify numerical component values.
+    </p>
+
+
+    <h2>2. Mathematical Model and Equations</h2>
+
+    <h3>Kirchhoff's Voltage Law (KVL)</h3>
+
+    <div class="equation">
+        Vs = VR + VC
+    </div>
+
+    <p>Ohm's law:</p>
+
+    <div class="equation">
+        VR = R × i
+    </div>
+
+    <p>Capacitor current-voltage relationship:</p>
+
+    <div class="equation">
+        i = C × dVC/dt
+    </div>
+
+    <h3>Differential Equation Derivation</h3>
+
+    <p>Substituting the capacitor current equation into Ohm's law:</p>
+
+    <div class="equation">
+        VR = RC × dVC/dt
+    </div>
+
+    <p>Substituting into Kirchhoff's voltage law:</p>
+
+    <div class="equation">
+        Vs = RC × dVC/dt + VC
+    </div>
+
+    <p>Rearranging:</p>
+
+    <div class="equation">
+        dVC/dt = (Vs - VC) / (RC)
+    </div>
+
+    <p>
+        The time constant is:
+        τ = RC = 1000 × 0.001 = 1 s.
+    </p>
+
+    <p>Therefore, the differential equation becomes:</p>
+
+    <div class="equation">
+        dVC/dt = (10 - VC) / 1
+    </div>
+
+    <p>Initial condition:</p>
+
+    <div class="equation">
+        VC(0) = 0 V
+    </div>
+
+
+    <h2>3. Exact Analytical Solution</h2>
+
+    <p>
+        The exact solution of the RC charging differential
+        equation is:
+    </p>
+
+    <div class="equation">
+        VC(t) = Vs × (1 - e^(-t/RC))
+    </div>
+
+    <p>Using the selected circuit parameters:</p>
+
+    <div class="equation">
+        VC(t) = 10 × (1 - e^(-t/1))
+    </div>
+
+    <p>
+        This analytical solution is used as an independent
+        reference to evaluate the numerical methods.
+    </p>
+
+
+    <h2>4. Euler's Numerical Method</h2>
+
+    <p>The general Euler update equation is:</p>
+
+    <div class="equation">
+        VC(n+1) = VC(n) + h × f(tn, VC(n))
+    </div>
+
+    <p>For this circuit:</p>
+
+    <div class="equation">
+        VC(n+1) = VC(n) + 0.2 × (10 - VC(n))
+    </div>
+
+    <div class="equation">
+        VC(n+1) = 0.8 × VC(n) + 2
+    </div>
+
+    <h3>First Iteration</h3>
+
+    <p>Initial voltage: VC(0) = 0 V.</p>
+
+    <div class="equation">
+        VC(1) = 0 + 0.2 × (10 - 0)
+    </div>
+
+    <p><strong>VC(1) = 2.000000 V</strong> at t = 0.2 s.</p>
+
+
+    <h2>5. Fourth-Order Runge-Kutta (RK4)</h2>
+
+    <p>The RK4 update equation is:</p>
+
+    <div class="equation">
+        VC(n+1) = VC(n) + h/6 × (k1 + 2k2 + 2k3 + k4)
+    </div>
+
+    <p>Where:</p>
+
+    <div class="equation">
+        k1 = f(tn, VC(n))
+    </div>
+
+    <div class="equation">
+        k2 = f(tn + h/2, VC(n) + hk1/2)
+    </div>
+
+    <div class="equation">
+        k3 = f(tn + h/2, VC(n) + hk2/2)
+    </div>
+
+    <div class="equation">
+        k4 = f(tn + h, VC(n) + hk3)
+    </div>
+
+    <h3>First Iteration</h3>
+
+    <ul>
+        <li>k1 = 10 V/s</li>
+        <li>k2 = 9 V/s</li>
+        <li>k3 = 9.1 V/s</li>
+        <li>k4 = 8.18 V/s</li>
+    </ul>
+
+    <div class="equation">
+        VC(1) = (0.2/6) × (10 + 2(9) + 2(9.1) + 8.18)
+    </div>
+
+    <p><strong>VC(1) = 1.812667 V</strong> at t = 0.2 s.</p>
+
+
+    <h2>6. Numerical Results</h2>
+
+    <p>
+        The simulation uses a time step of 0.2 seconds
+        over a total duration of 5 seconds.
+        A total of 25 time steps are calculated.
+    </p>
+
+    <table>
+        <tr>
+            <th>Time (s)</th>
+            <th>Euler (V)</th>
+            <th>RK4 (V)</th>
+            <th>Exact (V)</th>
+        </tr>
+
+        <tr><td>0.0</td><td>0.000000</td><td>0.000000</td><td>0.000000</td></tr>
+        <tr><td>0.2</td><td>2.000000</td><td>1.812667</td><td>1.812692</td></tr>
+        <tr><td>0.4</td><td>3.600000</td><td>3.296757</td><td>3.296800</td></tr>
+        <tr><td>0.6</td><td>4.880000</td><td>4.511832</td><td>4.511884</td></tr>
+        <tr><td>0.8</td><td>5.904000</td><td>5.506654</td><td>5.506710</td></tr>
+        <tr><td>1.0</td><td>6.723200</td><td>6.321148</td><td>6.321206</td></tr>
+        <tr><td>1.2</td><td>7.378560</td><td>6.988001</td><td>6.988058</td></tr>
+        <tr><td>1.4</td><td>7.902848</td><td>7.533976</td><td>7.534030</td></tr>
+        <tr><td>1.6</td><td>8.322278</td><td>7.980984</td><td>7.981035</td></tr>
+        <tr><td>1.8</td><td>8.657823</td><td>8.346964</td><td>8.347011</td></tr>
+        <tr><td>2.0</td><td>8.926258</td><td>8.646605</td><td>8.646647</td></tr>
+        <tr><td>2.2</td><td>9.141007</td><td>8.891930</td><td>8.891968</td></tr>
+        <tr><td>2.4</td><td>9.312805</td><td>9.092786</td><td>9.092820</td></tr>
+        <tr><td>2.6</td><td>9.450244</td><td>9.257234</td><td>9.257264</td></tr>
+        <tr><td>2.8</td><td>9.560195</td><td>9.391873</td><td>9.391899</td></tr>
+        <tr><td>3.0</td><td>9.648156</td><td>9.502106</td><td>9.502129</td></tr>
+        <tr><td>3.2</td><td>9.718525</td><td>9.592357</td><td>9.592378</td></tr>
+        <tr><td>3.4</td><td>9.774820</td><td>9.666249</td><td>9.666267</td></tr>
+        <tr><td>3.6</td><td>9.819856</td><td>9.726747</td><td>9.726763</td></tr>
+        <tr><td>3.8</td><td>9.855885</td><td>9.776279</td><td>9.776292</td></tr>
+        <tr><td>4.0</td><td>9.884708</td><td>9.816832</td><td>9.816844</td></tr>
+        <tr><td>4.2</td><td>9.907766</td><td>9.850034</td><td>9.850044</td></tr>
+        <tr><td>4.4</td><td>9.926213</td><td>9.877218</td><td>9.877227</td></tr>
+        <tr><td>4.6</td><td>9.940970</td><td>9.899474</td><td>9.899482</td></tr>
+        <tr><td>4.8</td><td>9.952776</td><td>9.917696</td><td>9.917703</td></tr>
+        <tr><td>5.0</td><td>9.962221</td><td>9.932615</td><td>9.932621</td></tr>
+    </table>
+
+
+    <h2>7. Independent Check and Error Analysis</h2>
+
+    <p>
+        The numerical results were compared with the
+        exact analytical solution at all 26 time points.
     </p>
 
     <p>
-        Methods: Euler, Runge-Kutta 4 (RK4),
-        and exact solution.
+        Absolute error is calculated as:
     </p>
 
-    <p>Detailed mathematical analysis and results will be added.</p>
+    <div class="equation">
+        Absolute Error = |Numerical Value - Exact Value|
+    </div>
 
-    <a href="index.html">Back to Home</a>
+    <table>
+        <tr>
+            <th>Method</th>
+            <th>Maximum Absolute Error (V)</th>
+        </tr>
+        <tr>
+            <td>Euler</td>
+            <td>0.40199441</td>
+        </tr>
+        <tr>
+            <td>RK4</td>
+            <td>0.00005797</td>
+        </tr>
+    </table>
+
+    <h3>Final Values at 5 Seconds</h3>
+
+    <ul>
+        <li>Euler: 9.962221 V</li>
+        <li>RK4: 9.932615 V</li>
+        <li>Exact solution: 9.932621 V</li>
+    </ul>
+
+    <p>
+        The RK4 solution is closer to the exact analytical
+        solution than the Euler solution for the selected
+        time step of 0.2 seconds.
+    </p>
+
+    <hr>
+
+    <p>
+        <a href="index.html">Back to Home</a>
+    </p>
 
 </body>
 </html>
