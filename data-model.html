@@ -6,41 +6,153 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data and Model | EEE213</title>
 </head>
+
 <body>
 
     <h1>Data and Model</h1>
 
-    <h2>Combined Cycle Power Plant Dataset</h2>
+    <h2>1. Dataset Description</h2>
 
     <p>
-        The CCPP dataset contains 9,568 observations
-        and four input features.
+        The Combined Cycle Power Plant (CCPP) dataset
+        contains 9,568 observations and four input features.
     </p>
 
-    <h3>Features</h3>
+    <h3>Dataset Source and License</h3>
+
+    <p>
+        Tüfekci, P. and Kaya, H. (2014).
+        Combined Cycle Power Plant.
+        UCI Machine Learning Repository.
+    </p>
+
+    <p>
+        DOI:
+        <a href="https://doi.org/10.24432/C5002N">
+            10.24432/C5002N
+        </a>
+    </p>
+
+    <p>License: CC BY 4.0.</p>
+
+    <h3>Features and Target</h3>
+
     <ul>
-        <li>Ambient Temperature (AT)</li>
-        <li>Exhaust Vacuum (V)</li>
-        <li>Ambient Pressure (AP)</li>
-        <li>Relative Humidity (RH)</li>
+        <li>AT: Ambient Temperature (°C)</li>
+        <li>V: Exhaust Vacuum (cm Hg)</li>
+        <li>AP: Ambient Pressure (mbar)</li>
+        <li>RH: Relative Humidity (%)</li>
     </ul>
 
-    <p>Target: Net Electrical Output (PE), measured in MW.</p>
+    <p>
+        <strong>Target:</strong>
+        PE - Net Electrical Output (MW).
+    </p>
 
-    <h2>Week 09: Data Analysis</h2>
-    <p>Missing values: 0</p>
-    <p>Extra duplicate rows: 41 (41 duplicate groups, retained).</p>
-    <p>Training set: 7,654 rows.</p>
-    <p>Test set: 1,914 rows.</p>
-    <p>Baseline test MAE: 14.72 MW.</p>
 
-    <h2>Week 10: Random Forest Regression</h2>
-    <p>Number of trees: 100</p>
-    <p>Max features: 2</p>
-    <p>Random state: 42</p>
-    <p>Test MAE: 2.28 MW</p>
+    <h2>2. Data Quality Checks</h2>
 
-    <a href="index.html">Back to Home</a>
+    <ul>
+        <li>Number of observations: 9,568</li>
+        <li>Number of columns: 5</li>
+        <li>Missing values: 0</li>
+        <li>Duplicate groups: 41</li>
+        <li>Extra duplicate rows: 41 (retained)</li>
+        <li>Unique rows: 9,527</li>
+    </ul>
+
+    <p>
+        All 41 extra duplicate rows were retained
+        to preserve the original dataset.
+    </p>
+
+    <h3>Observed Value Ranges</h3>
+
+    <ul>
+        <li>AT: 1.81 - 37.11 °C</li>
+        <li>V: 25.36 - 81.56 cm Hg</li>
+        <li>AP: 992.89 - 1033.30 mbar</li>
+        <li>RH: 25.56 - 100.16 %</li>
+        <li>PE: 420.26 - 495.76 MW</li>
+    </ul>
+
+
+    <h2>3. Training and Test Split</h2>
+
+    <p>
+        The dataset was divided using the first
+        7,654 rows for training and the last
+        1,914 rows for testing.
+    </p>
+
+    <ul>
+        <li>Total observations: 9,568</li>
+        <li>Training set: 7,654 rows (80%)</li>
+        <li>Test set: 1,914 rows (20%)</li>
+    </ul>
+
+    <p>
+        The test set was kept separate during
+        model training and used for final evaluation.
+    </p>
+
+
+    <h2>4. Week 09: Baseline and Linear Regression</h2>
+
+    <h3>Baseline Model</h3>
+
+    <p>
+        The baseline predicts the training mean
+        of PE for every test observation.
+    </p>
+
+    <p>Training mean of PE: 454.44 MW</p>
+
+    <p>Baseline test MAE: 14.72 MW</p>
+
+    <h3>Linear Regression Results</h3>
+
+    <ul>
+        <li>Linear Regression using AT: 4.33 MW MAE</li>
+        <li>Linear Regression using V: 6.49 MW MAE</li>
+    </ul>
+
+
+    <h2>5. Week 10: Random Forest Regression</h2>
+
+    <p>
+        Random Forest Regression was applied to predict
+        net electrical output (PE).
+    </p>
+
+    <h3>Model Configuration</h3>
+
+    <ul>
+        <li>Model: RandomForestRegressor</li>
+        <li>Number of trees (n_estimators): 100</li>
+        <li>Maximum features (max_features): 2</li>
+        <li>Random state: 42</li>
+    </ul>
+
+    <h3>Model Performance</h3>
+
+    <ul>
+        <li>Baseline test MAE: 14.72 MW</li>
+        <li>Random Forest test MAE: 2.28 MW</li>
+    </ul>
+
+    <p>
+        The Random Forest model achieved a lower
+        test MAE than the baseline model on the
+        specified training and test split.
+    </p>
+
+
+    <hr>
+
+    <p>
+        <a href="index.html">Back to Home</a>
+    </p>
 
 </body>
 </html>
