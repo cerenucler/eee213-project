@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EEE213 Project</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f7fa;
+            color: #222;
+        }
+
+        header {
+            background: #263746;
+            color: white;
+            padding: 35px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            margin-top: 35px;
+        }
+
+        .pages {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .card {
+            background: white;
+            padding: 22px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #263746;
+            border: 1px solid #ddd;
+        }
+
+        .card:hover {
+            border-color: #287da3;
+        }
+
+        .card h3 {
+            margin-top: 0;
+        }
+
+        footer {
+            margin-top: 35px;
+            color: #666;
+            font-size: 13px;
+        }
+
+        @media (max-width: 600px) {
+            .pages {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <p>EEE213 | COURSE PROJECT</p>
+        <h1>Machine Learning and Numerical Methods</h1>
+        <p>Learning from real data and solving an engineering problem.</p>
+    </header>
+
+    <main>
+        <h2>Project Sections</h2>
+
+        <div class="pages">
+
+            <a class="card" href="numerical-problem.html">
+                <h3>Numerical Problem</h3>
+                <p>RC charging analysis using Euler, RK4 and exact solution.</p>
+            </a>
+
+            <a class="card" href="data-model.html">
+                <h3>Data and Model</h3>
+                <p>Random Forest application on the power-plant dataset.</p>
+            </a>
+
+            <a class="card" href="presentation.html">
+                <h3>Presentation</h3>
+                <p>Week 10 machine learning method presentation.</p>
+            </a>
+
+            <a class="card" href="code-statement.html">
+                <h3>Code and Statement</h3>
+                <p>Source code, execution instructions and AI-use statement.</p>
+            </a>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>EEE213 - Electrical and Electronics Engineering</p>
+    </footer>
+
+</body>
+</html>
