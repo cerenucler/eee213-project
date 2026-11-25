@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Code and Statement | EEE213</title>
+<style>
+:root{--navy:#263746;--ink:#24313d;--muted:#5c6b78;--line:#d9e0e6;--accent:#167c80;--panel:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:#f4f6f8;color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.65}
+main{width:min(1050px,calc(100% - 36px));margin:34px auto}
+header{background:var(--navy);color:#fff;border-radius:14px;padding:28px 32px;margin-bottom:24px}
+header p{margin:0 0 8px;color:#bfe8e5;text-transform:uppercase;letter-spacing:.08em;font-size:.83rem}
+h1{margin:0;font-size:clamp(26px,4vw,36px)}
+section{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:22px 26px;margin:18px 0}
+h2{color:var(--navy);margin:0 0 14px;font-size:1.35rem}
+h3{color:var(--navy);margin:18px 0 6px;font-size:1.02rem}
+p{margin:8px 0 12px}
+a{color:#126b9a;overflow-wrap:anywhere}
+code,pre{font-family:Consolas,monospace}
+pre{background:#f1f4f7;padding:14px 16px;border-radius:8px;overflow-x:auto}
+ol{padding-left:24px}
+li{margin:10px 0}
+.note{color:var(--muted);font-size:.94rem}
+.back{display:inline-block;margin:20px 0 0;font-weight:600}
+footer{color:var(--muted);font-size:.9rem;margin:22px 0}
+@media(max-width:650px){main{width:calc(100% - 20px);margin:14px auto}header,section{padding:19px}}
+</style>
+</head>
+<body>
+<main>
+<header>
+<p>EEE213 | Course Project</p>
+<h1>Code and Statement</h1>
+</header>
+
+<section>
+<h2>GitHub Repository</h2>
+<p>The complete source code, dataset file, and project pages are available in the public repository.</p>
+<p><a href="https://github.com/cerenucler/eee213-project" target="_blank" rel="noopener">Public GitHub Repository</a></p>
+</section>
+
+<section>
+<h2>Source Code</h2>
+<h3>Data Analysis and Linear Regression</h3>
+<p><a href="https://github.com/cerenucler/eee213-project/blob/main/lab/w09.py" target="_blank" rel="noopener">lab/w09.py</a></p>
+<h3>Random Forest Regression</h3>
+<p><a href="https://github.com/cerenucler/eee213-project/blob/main/lab/random_forest.py" target="_blank" rel="noopener">lab/random_forest.py</a></p>
+<h3>RC Charging Circuit</h3>
+<p><a href="https://github.com/cerenucler/eee213-project/blob/main/lab/rc_charging.py" target="_blank" rel="noopener">lab/rc_charging.py</a></p>
+</section>
+
+<section>
+<h2>How to Run the Code</h2>
+<p>Download or clone the repository. Open a terminal in the repository root directory, where <code>ccpp.csv</code> is located, and install the required libraries:</p>
+<pre><code>python -m pip install numpy scikit-learn</code></pre>
+<p>Run the scripts from the repository root directory:</p>
+<pre><code>python lab/w09.py
+python lab/random_forest.py
+python lab/rc_charging.py</code></pre>
+<p class="note">The data-analysis and Random Forest scripts read <code>ccpp.csv</code> from the repository root. Keep the dataset file in that location when running them.</p>
+</section>
+
+<section>
+<h2>Software Versions</h2>
+<ul>
+<li>Python 3.13.17</li>
+<li>NumPy 2.5.5</li>
+<li>scikit-learn 1.9.1</li>
+</ul>
+</section>
+
+<section>
+<h2>Sources</h2>
+<ol style="list-style:none;padding-left:0">
+<li>[1] NumPy Developers, “NumPy Documentation: <code>genfromtxt</code> and <code>polyfit</code>.” <a href="https://numpy.org/doc/stable/reference/generated/numpy.genfromtxt.html" target="_blank" rel="noopener">genfromtxt</a> | <a href="https://numpy.org/doc/stable/reference/generated/numpy.polyfit.html" target="_blank" rel="noopener">polyfit</a>.</li>
+<li>[2] Scikit-learn Developers, “RandomForestRegressor Documentation.” <a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestRegressor.html" target="_blank" rel="noopener">RandomForestRegressor</a>.</li>
+<li>[3] L. Breiman, “Random Forests,” <em>Machine Learning</em>, vol. 45, no. 1, pp. 5–32, Oct. 2001. DOI: <a href="https://doi.org/10.1023/A:1010933404324" target="_blank" rel="noopener">10.1023/A:1010933404324</a>.</li>
+<li>[4] A. R. Vijay Babu, N. Bharath Kumar, R. Patnaik Narasipuram, S. Periyannan, A. Hosseinpour, and A. Flah, “Solar Energy Forecasting Using Machine Learning Techniques for Enhanced Grid Stability,” <em>IEEE Access</em>, vol. 13, pp. 93735–93754, 2025. DOI: <a href="https://doi.org/10.1109/ACCESS.2025.3574093" target="_blank" rel="noopener">10.1109/ACCESS.2025.3574093</a>.</li>
+<li>[5] K. Olcay, S. G. Tunca, and M. A. Özgür, “Forecasting and Performance Analysis of Energy Production in Solar Power Plants Using Long Short-Term Memory (LSTM) and Random Forest Models,” <em>IEEE Access</em>, vol. 12, pp. 103299–103312, 2024. DOI: <a href="https://doi.org/10.1109/ACCESS.2024.3432574" target="_blank" rel="noopener">10.1109/ACCESS.2024.3432574</a>.</li>
+<li>[6] P. Tüfekci and H. Kaya, “Combined Cycle Power Plant,” UCI Machine Learning Repository, 2014. DOI: <a href="https://doi.org/10.24432/C5002N" target="_blank" rel="noopener">10.24432/C5002N</a>. License: CC BY 4.0.</li>
+</ol>
+</section>
+
+<section>
+<h2>AI Use Statement</h2>
+<p>ChatGPT was used for explanations, coding guidance, troubleshooting, and language support during the project. The Python scripts were executed locally, and the reported outputs were checked by the student. The final code, results, and project content were reviewed by the student.</p>
+</section>
+
+<a class="back" href="index.html">Back to Home</a>
+<footer>EEE213 · Electrical and Electronics Engineering</footer>
+</main>
+</body>
+</html>

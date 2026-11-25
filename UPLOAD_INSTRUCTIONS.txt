@@ -1,0 +1,24 @@
+EEE213 FINAL WEBSITE UPDATE
+
+Files in this package:
+- code-statement.html
+- presentation.html
+- random-forest-presentation.pptx
+
+Upload all three to the ROOT of:
+https://github.com/cerenucler/eee213-project
+Do not place them inside the lab/ folder.
+
+IMPORTANT:
+The repository currently has an older file named random-forest-presentation.pptx.
+Replace that existing file with the updated 7-slide version in this package. If GitHub does not let you replace it directly, delete the existing PowerPoint first, commit the deletion, then upload this new file using the same name.
+
+Replace the existing code-statement.html and presentation.html with the versions in this package.
+The presentation page links to random-forest-presentation.pptx in the repository root.
+
+Suggested commit message:
+Complete project presentation and code statement pages
+
+After committing, check:
+https://cerenucler.github.io/eee213-project/code-statement.html
+https://cerenucler.github.io/eee213-project/presentation.html
